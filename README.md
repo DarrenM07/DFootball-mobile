@@ -39,11 +39,11 @@ In Flutter, widgets are the building blocks of the user interface. Widgets in Fl
 ## 2. Widgets Used in This Project
 
 # Widgets
-- **Scaffold**: Provides the basic structure of the app, including the `AppBar` and `body` layout.
-- **AppBar**: Displays the title at the top of the page.
-- **Padding**: Adds padding around widgets to create space.
-- **Row**: Arranges `InfoCard` widgets horizontally.
-- **Column**: Arranges widgets vertically for organizing layout.
+- **Scaffold**: Provides the basic structure of the screen with a top app bar, body, and floating button. It is a foundational widget in Flutter that holds the main layout.
+- **AppBar**: Displays a title at the top of the screen. In this project, it shows "DFootball" as the app title.
+- **Padding**: Adds spacing around its child widget. Used to ensure elements are spaced from the screen edges.
+- **Row**: Arranges `InfoCard` widgets horizontally. In this project, it organizes user information cards in a row.
+- **Column**: Arranges widgets vertically for organizing layout. It’s used to stack user info cards and feature buttons.
 - **Card**: Creates a shadowed container for content display, used in `InfoCard` to show user data.
 - **GridView**: Used to display `ItemCard` widgets in a 3-column grid layout.
 - **Container**: Wraps widgets to add styling, like borders and padding.
@@ -51,6 +51,7 @@ In Flutter, widgets are the building blocks of the user interface. Widgets in Fl
 - **Icon**: Shows icons in the `ItemCard` widgets.
 - **InkWell**: Detects taps or interactions on the `ItemCard` widgets.
 - **Material**: Wraps `ItemCard` to give a consistent background color and rounded corners.
+- **SnackBar**: Displays a small pop-up notification at the bottom of the screen when a button is pressed.
 
 # Custom Widgets
 - **InfoCard**: Custom widget displaying information like NPM, Name, and Class.
@@ -58,10 +59,10 @@ In Flutter, widgets are the building blocks of the user interface. Widgets in Fl
 
 ## 3. Use-Case for `setState()`
 
-The `setState()` method is used within a `StatefulWidget` to update the widget's state. When `setState()` is called, it triggers a rebuild of the widget, updating the UI to reflect the current state. This is useful for dynamic content, where user interactions or data changes need to be displayed immediately.
+The `setState()` method is used within a `StatefulWidget` to update the widget's state. When `setState()` is called, it triggers a rebuild of the widget, updating the UI to reflect the current state. This is useful for dynamic content, where user interactions or data changes need to be displayed immediately. It is commonly used when the widget needs to dynamically change, such as updating a counter, changing a theme, or displaying new data in response to user interactions.
 
 # Example of Variables Affected by `setState()`
-In a stateful widget, variables like counters, toggle values, or form inputs can be managed by `setState()`. For instance, a counter variable that increments every time a button is pressed can use `setState()` to update and display the latest count.
+Only variables that are properties of a StatefulWidget’s State class can be updated with setState(). For instance, if this project had a counter or toggle variable to switch between themes, setState() would be used to update and reflect that change in the UI. In a stateful widget, variables like counters, toggle values, or form inputs can be managed by `setState()`. For instance, a counter variable that increments every time a button is pressed can use `setState()` to update and display the latest count.
 
 ```
 int counter = 0;
