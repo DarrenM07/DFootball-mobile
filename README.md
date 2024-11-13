@@ -15,7 +15,7 @@ For help getting started with Flutter development, view the
 [online documentation](https://docs.flutter.dev/), which offers tutorials,
 samples, guidance on mobile development, and a full API reference.
 
-## Assigment 7
+### Assigment 7
 # 1. Stateless Widgets and Stateful Widgets
 
 In Flutter, widgets are the building blocks of the user interface. Widgets in Flutter are broadly categorized into **stateless** and **stateful**:
@@ -366,3 +366,234 @@ final DateTime currentTime = DateTime.now();
     flutter analyze
     ```
     - **Explanation**: This analysis helps identify errors or warnings that could impact app performance.
+
+## ----------------------------------------------------------------------------------------------------------------
+### Assignment 8
+  ## 1. What is the purpose of const in Flutter? Explain the advantages of using const in Flutter code. When should we use const, and when should it not be used?
+    The const keyword in Flutter (and Dart) defines objects that are compile-time constants, meaning their values are fixed at compile-time and cannot change during runtime. Using const in Flutter brings several advantages:
+
+    Advantages: Using const in Flutter creates a single, reusable instance of an object, saving memory. Since const objects cannot change after initialization, they lead to more predictable code and help prevent bugs related to object mutation.
+
+    When to Use const: Use const for widgets that stay the same throughout the app’s lifecycle or for repeated widgets and values, as it aids in caching and memory efficiency. It’s ideal for values known at compile time, like mathematical constants or widgets built with such constants.
+
+    When Not to Use const: Avoid const for values or widgets that depend on user actions, state changes, or dynamic data, as const is limited to compile-time values. For runtime flexibility, const is not suitable when widgets require dynamic properties.
+
+
+
+  ## 2. Explain and compare the usage of Column and Row in Flutter. Provide example implementations of each layout widget!
+  Comparison of Column and Row in Flutter:
+  - Direction:  Column  is vertical (top to bottom),  Row  is horizontal (left to right).
+  -  Main Axis:   Column  uses a vertical main axis,  Row  uses a horizontal main axis.
+  -  Cross Axis:   Column  cross axis is horizontal,  Row  cross axis is vertical.
+  -  Use Case:   Column  stacks widgets vertically,  Row  arranges widgets side by side.
+  -  Main Axis Alignment:  Both offer alignments like  Start ,  Center ,  SpaceBetween .
+  -  Cross Axis Alignment:  Both support alignments like  Start ,  Center ,  Stretch .
+
+
+  Example of Column:
+
+  ```
+  Column(
+    children: [
+      Text('Item 1'),
+      Text('Item 2'),
+      Container(
+        color: Colors.red,
+        height: 100,
+        width: 100,
+        child: Center(child: Text('Box')),
+      ),
+      Icon(Icons.star, size: 50),
+    ],
+  ),
+  ```
+
+  Example of Row:
+  ```
+    children: [
+      Icon(Icons.home),
+      Text('Starred Item'),
+      Container(
+              color: Colors.blue,
+              height: 50,
+              width: 50,
+              child: Center(child: Text('Box')),
+            ),
+            Text('End'),
+    ],
+  ```
+
+
+
+  ## 3. List the input elements you used on the form page in this assignment. Are there other Flutter input elements you didn’t use in this assignment? Explain!
+
+   Input Elements Used: 
+
+  -  TextFormField:  Used to input the food’s name, description, and quantity (configured for numeric input using TextInputType.number).
+  -  ElevatedButton:  Triggers form validation and saves the entered data.
+
+   Other Input Elements Not Used: 
+
+  1.  DropdownButtonFormField:  Displays a dropdown menu for selecting from predefined options, useful for categories.
+  2.  Checkbox and CheckboxListTile:  Toggles a boolean value, suitable for enabling/disabling settings.
+  3.  Radio and RadioListTile:  Used to select one option from a set of mutually exclusive choices.
+  4.  Switch:  Toggles a setting on or off, functioning similarly to a checkbox but styled as a switch.
+  5.  Slider:  Allows selecting a value from a range, ideal for quantities or ratings.
+  6.  DatePicker:  Lets users pick a date, useful for inputs like expiration dates.
+  7.  TimePicker:  Used for selecting a specific time.
+  8.  TextField:  Similar to TextFormField but lacks built-in validation, making it a simpler input field.
+
+   Explanation: 
+  TextFormField was chosen for this form as it supports validation, making it well-suited for text and numeric entries. Other input widgets, like dropdowns, checkboxes, and sliders, are better for predefined choices, toggles, or range selections but were unnecessary here. Date and time pickers were not required, as there was no need for date or time inputs. Input widgets should align with the form’s specific requirements; for example, DropdownButtonFormField is useful for selecting categories, and Checkbox is helpful for boolean options.
+
+
+  ## 4. How do you set the theme within a Flutter application to ensure consistency? Did you implement a theme in your application?
+  To maintain a consistent design in a Flutter app, use a global theme with ThemeData to define colors, fonts, and visual properties across the app.
+
+   How to Set a Global Theme: 
+  1.  Define in MaterialApp:  Pass a ThemeData object to the theme property of the MaterialApp widget.
+  2.  Customize ThemeData:  ThemeData allows customization of primary and secondary colors, font styles, button themes, and input decoration themes.
+
+  ```
+  import 'package:flutter/material.dart';
+
+  void main() {
+    runApp(MyApp());
+  }
+
+  class MyApp extends StatelessWidget {
+    @override
+    Widget build(BuildContext context) {
+      return MaterialApp(
+        title: 'Custom Themed App',
+        theme: ThemeData(
+          primaryColor: Colors.deepPurple,
+          colorScheme: ColorScheme.fromSwatch().copyWith(
+            primary: Colors.deepPurple,
+            secondary: Colors.orange,
+          ),
+          appBarTheme: const AppBarTheme(
+            backgroundColor: Colors.deepPurple,
+            foregroundColor: Colors.white,
+            elevation: 4,
+          ),
+          buttonTheme: const ButtonThemeData(
+            buttonColor: Colors.deepPurple,
+            textTheme: ButtonTextTheme.primary,
+          ),
+          textTheme: const TextTheme(
+            bodyLarge: TextStyle(color: Colors.black87, fontSize: 20),
+            bodyMedium: TextStyle(color: Colors.black54, fontSize: 16),
+          ),
+          elevatedButtonTheme: ElevatedButtonThemeData(
+            style: ElevatedButton.styleFrom(
+              backgroundColor: Colors.orange,
+              foregroundColor: Colors.white,
+              padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 15),
+            ),
+          ),
+        ),
+        home: HomePage(),
+      );
+    }
+  }
+
+  class HomePage extends StatelessWidget {
+    @override
+    Widget build(BuildContext context) {
+      return Scaffold(
+        appBar: AppBar(
+          title: const Text('Custom Themed App'),
+        ),
+        body: Center(
+          child: ElevatedButton(
+            onPressed: () {},
+            child: const Text('Tap Here'),
+          ),
+        ),
+      );
+    }
+  }
+  ```
+
+
+
+  ## 5. How do you manage navigation in a multi-page Flutter application?
+  In a multi-page Flutter app, navigation can be handled effectively using the Navigator class, MaterialPageRoute, named routes, data passing, and advanced packages like go_router.
+
+  1. Basic Navigator Class Usage:
+
+  Navigator.push: Pushes a new page.
+  Navigator.pop: Removes the current page.
+  Example:
+  ```
+  Navigator.push(
+    context,
+    MaterialPageRoute(builder: (context) => SecondPage()),
+  );
+  Navigator.pop(context);
+  ```
+
+  2. Named Routes for Scalability:
+
+  Define Routes:
+  ```
+  void main() {
+    runApp(MaterialApp(
+      initialRoute: '/',
+      routes: {
+        '/': (context) => HomePage(),
+        '/second': (context) => SecondPage(),
+      },
+    ));
+  }
+  ```
+  Navigate Using Named Routes:
+  ```
+  Navigator.pushNamed(context, '/second');
+  ```
+
+  3. Passing Data Between Pages:
+
+  Direct Passing:
+  ```
+  Navigator.push(
+    context,
+    MaterialPageRoute(builder: (context) => SecondPage(data: 'Hello')),
+  );
+  Using Named Routes with Arguments:
+  dart
+  Copy code
+  Navigator.pushNamed(
+    context,
+    '/second',
+    arguments: 'Hello',
+  );
+
+  // Receiving Arguments in SecondPage
+  final String data = ModalRoute.of(context)!.settings.arguments as String;
+  ```
+  4. Advanced Navigation with go_router Package:
+
+  Using go_router:
+  ```
+  final GoRouter _router = GoRouter(
+    routes: [
+      GoRoute(
+        path: '/',
+        builder: (context, state) => HomePage(),
+      ),
+      GoRoute(
+        path: '/second',
+        builder: (context, state) => SecondPage(),
+      ),
+    ],
+  );
+
+  void main() {
+    runApp(MaterialApp.router(
+      routerConfig: _router,
+    ));
+  }
+  ```
+  This structure provides basic navigation, scalability with named routes, data passing, and advanced routing for complex needs.
