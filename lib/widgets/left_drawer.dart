@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:dfootball/screens/menu.dart';
 import 'package:dfootball/screens/productentry_form.dart';
+import 'package:dfootball/screens/list_productentry.dart';
+// TODO: Import ProductEntryFormPage if it has already been created
 
 class LeftDrawer extends StatelessWidget {
   const LeftDrawer({super.key});
@@ -9,14 +11,12 @@ class LeftDrawer extends StatelessWidget {
   Widget build(BuildContext context) {
     return Drawer(
       child: ListView(
-        padding: EdgeInsets.zero,
         children: [
           DrawerHeader(
             decoration: BoxDecoration(
               color: Theme.of(context).colorScheme.primary,
             ),
             child: const Column(
-              mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Text(
                   'DFootball',
@@ -27,9 +27,10 @@ class LeftDrawer extends StatelessWidget {
                     color: Colors.white,
                   ),
                 ),
-                SizedBox(height: 8),
+                Padding(padding: EdgeInsets.all(8)),
                 Text(
-                  "Track your store every day here!",
+                  "Track your product every day here!",
+                  // TODO: Add text style with center alignment, font size 15, white color, and normal weight
                   textAlign: TextAlign.center,
                   style: TextStyle(
                     fontSize: 15,
@@ -40,9 +41,11 @@ class LeftDrawer extends StatelessWidget {
               ],
             ),
           ),
+          // Routing section
           ListTile(
             leading: const Icon(Icons.home_outlined),
             title: const Text('Home Page'),
+            // Redirection part to MyHomePage
             onTap: () {
               Navigator.pushReplacement(
                 context,
@@ -53,11 +56,11 @@ class LeftDrawer extends StatelessWidget {
             },
           ),
           ListTile(
-            leading: const Icon(Icons.add),
-            title: const Text('Add Item'),
+            leading: const Icon(Icons.mood),
+            title: const Text('Add Product'),
+            // Redirection part to ProductEntryFormPage
             onTap: () {
-              Navigator.pop(context); // Close the drawer
-              Navigator.push(
+               Navigator.pushReplacement(
                 context,
                 MaterialPageRoute(
                   builder: (context) => const ProductEntryFormPage(),
@@ -65,8 +68,20 @@ class LeftDrawer extends StatelessWidget {
               );
             },
           ),
+          ListTile(
+            leading: const Icon(Icons.add_reaction_rounded),
+            title: const Text('Mood List'),
+            onTap: () {
+                // Route to the mood page
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => const ProductEntryPage()),
+                );
+            },
+        ),
         ],
       ),
     );
   }
 }
+
